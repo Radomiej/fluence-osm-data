@@ -1,4 +1,4 @@
-package pl.fluence.reader.models;
+package pl.fluence.collector.models;
 
 public class NodeModel extends ElementModel{
 	private double longitude;

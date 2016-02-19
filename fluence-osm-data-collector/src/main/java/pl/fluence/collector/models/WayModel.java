@@ -1,4 +1,4 @@
-package pl.fluence.reader.models;
+package pl.fluence.collector.models;
 
 public class WayModel extends ElementModel{
 	private String nodes;
