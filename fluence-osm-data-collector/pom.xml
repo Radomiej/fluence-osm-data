@@ -26,6 +26,11 @@
 	</repositories>
 	<dependencies>
 		<dependency>
+			<groupId>pl.fluence</groupId>
+			<artifactId>fluence-osm-data-reader</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>${guava.version}</version>

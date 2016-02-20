@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import pl.fluence.reader.importers.OsmImporter;
 import pl.fluence.reader.processors.KeysElementProccesor;
-import pl.fluence.reader.processors.AllNodeProccesor;
+import pl.fluence.reader.processors.AllElementsProccesor;
 import pl.fluence.reader.processors.KarlsruheSchemaProccesor;
 import pl.fluence.reader.processors.OsmElementProccesor;
 
@@ -41,7 +41,7 @@ public class ProccesingDataTest {
 		KeysElementProccesor keysProccesor = new KeysElementProccesor();
 		keysProccesor.addValidKey("addr");
 		
-		AllNodeProccesor allNodeProccesor = new AllNodeProccesor();
+		AllElementsProccesor allNodeProccesor = new AllElementsProccesor();
 		osmImporter.addProccessor(karlsruheSchemaProccesor);
 		osmImporter.addProccessor(keysProccesor);
 		osmImporter.addProccessor(allNodeProccesor);
@@ -49,10 +49,10 @@ public class ProccesingDataTest {
 		assertEquals(39, karlsruheSchemaProccesor.getResultsSize());
 		assertEquals(81, keysProccesor.getValidNodes().size());
 		assertEquals(113, keysProccesor.getValidWays().size());
-		assertEquals(173598, allNodeProccesor.getNodesMap().keySet().size());
-		assertEquals(6756, allNodeProccesor.getWaysMap().keySet().size());
-		assertEquals(158, allNodeProccesor.getRelationsMap().keySet().size());
-		assertEquals(1, allNodeProccesor.getBoundsMap().keySet().size());
+		assertEquals(173598, allNodeProccesor.getElementDatabase().getNodesMap().keySet().size());
+		assertEquals(6756, allNodeProccesor.getElementDatabase().getWaysMap().keySet().size());
+		assertEquals(158, allNodeProccesor.getElementDatabase().getRelationsMap().keySet().size());
+		assertEquals(1, allNodeProccesor.getElementDatabase().getBoundsMap().keySet().size());
 		
 	}
 

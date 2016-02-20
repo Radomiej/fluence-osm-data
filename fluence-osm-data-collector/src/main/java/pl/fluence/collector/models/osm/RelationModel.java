@@ -1,4 +1,4 @@
-package pl.fluence.collector.models;
+package pl.fluence.collector.models.osm;
 
 public class RelationModel extends ElementModel{
 	private String members;

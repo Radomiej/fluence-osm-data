@@ -1,4 +1,4 @@
-package pl.fluence.collector.models;
+package pl.fluence.collector.models.osm;
 
 public class ElementModel {
 	private long geoId;
