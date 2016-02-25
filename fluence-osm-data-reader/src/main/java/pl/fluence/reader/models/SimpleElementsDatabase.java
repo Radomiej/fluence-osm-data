@@ -9,7 +9,7 @@ import org.openstreetmap.osmosis.core.domain.v0_6.Node;
 import org.openstreetmap.osmosis.core.domain.v0_6.Relation;
 import org.openstreetmap.osmosis.core.domain.v0_6.Way;
 
-public class SimpleElementDatabase {
+public class SimpleElementsDatabase {
 	private Map<Long, Node> nodesMap = new HashMap<Long, Node>();
 	private Map<Long, Way> waysMap = new HashMap<Long, Way>();
 	private Map<Long, Relation> relationsMap = new HashMap<Long, Relation>();

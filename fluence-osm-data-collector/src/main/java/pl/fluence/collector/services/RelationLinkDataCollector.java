@@ -20,18 +20,18 @@ import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Polygon;
 
-import pl.fluence.reader.models.SimpleElementDatabase;
+import pl.fluence.reader.models.SimpleElementsDatabase;
 import pl.fluence.reader.processors.AllElementsProccesor;
 
 public class RelationLinkDataCollector {
-	private SimpleElementDatabase elementsDatabase;
+	private SimpleElementsDatabase elementsDatabase;
 	List<RelationLink> relationLinks = new ArrayList<RelationLink>();
 	private Map<Long, RelationLink> relationMap = new HashMap<Long, RelationLink>();
 
 	private int nullLink = 0;
 	private int anyLink = 0;
 
-	public RelationLinkDataCollector(SimpleElementDatabase elementsDatabase) {
+	public RelationLinkDataCollector(SimpleElementsDatabase elementsDatabase) {
 		this.elementsDatabase = elementsDatabase;
 	}
 

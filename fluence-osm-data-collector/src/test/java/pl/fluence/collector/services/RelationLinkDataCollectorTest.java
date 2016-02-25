@@ -9,6 +9,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vividsolutions.jts.geom.MultiPolygon;
 
 import pl.fluence.collector.tools.CollisionChecker;
@@ -24,8 +26,8 @@ public class RelationLinkDataCollectorTest {
 	@Before
 	public void setUp() throws Exception {
 		ClassLoader classLoader = getClass().getClassLoader();
-//		mapFile = new File(classLoader.getResource("andorra-latest.osm.pbf").getFile());
-		mapFile = new File("C://mapy//lubuskie-latest.osm.pbf");
+		mapFile = new File(classLoader.getResource("andorra-latest.osm.pbf").getFile());
+//		mapFile = new File("C://mapy//lubuskie-latest.osm.pbf");
 	}
 
 	@Test
@@ -49,6 +51,19 @@ public class RelationLinkDataCollectorTest {
 			if (multiPolygon != null && CollisionChecker.checkMultipolygonAndPointText(multiPolygon.toString(), 52.757618,
 					15.262077)) {
 				System.out.println("Kolizja: " + relationLink.getRelation());
+				
+				ObjectMapper mapper = new ObjectMapper();
+
+				//Object to JSON in String
+				
+				try {
+					String jsonInString = mapper.writeValueAsString(relationLink.getRelation().getTags());
+					System.out.println("Tags: " + jsonInString);
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
+				
+				
 			}
 		}
 	}
