@@ -1,8 +1,6 @@
 package pl.fluence.reader.processors;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.openstreetmap.osmosis.core.domain.v0_6.Bound;
@@ -16,23 +14,15 @@ public class KarlsruheSchemaProccesor implements OsmElementProccesor {
 	private Set<Node> validNodes = new HashSet<Node>();
 
 	public void complete() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void proccesWay(Way way) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void proccesRelation(Relation relation) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void proccesBound(Bound bound) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void proccesNode(Node node) {

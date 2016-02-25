@@ -1,4 +1,4 @@
-package pl.fluence.reader.models;
+package pl.fluence.reader.database;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import org.openstreetmap.osmosis.core.domain.v0_6.Node;
 import org.openstreetmap.osmosis.core.domain.v0_6.Relation;
 import org.openstreetmap.osmosis.core.domain.v0_6.Way;
 
-public class SimpleElementsDatabase {
+public class SimpleElementsDatabase implements ElementsDatabase {
 	private Map<Long, Node> nodesMap = new HashMap<Long, Node>();
 	private Map<Long, Way> waysMap = new HashMap<Long, Way>();
 	private Map<Long, Relation> relationsMap = new HashMap<Long, Relation>();
@@ -30,32 +30,38 @@ public class SimpleElementsDatabase {
 	public Map<Long, Bound> getBoundsMap() {
 		return boundsMap;
 	}
-	
-	public void addEntity(Entity entity){
+
+	public void addEntity(Entity entity) {
 		if (entity instanceof Node) {
 			addNode((Node) entity);
-		}else if (entity instanceof Way) {
+		} else if (entity instanceof Way) {
 			addWay((Way) entity);
-		}else if (entity instanceof Relation) {
+		} else if (entity instanceof Relation) {
 			addRelation((Relation) entity);
-		}else if(entity instanceof Bound) {
+		} else if (entity instanceof Bound) {
 			addBound((Bound) entity);
 		}
 	}
 
 	public void addBound(Bound entity) {
-		boundsMap.put(entity.getId(), entity);		
+		boundsMap.put(entity.getId(), entity);
+	}
+
+	public Entity getEntity(Long id) {
+		return nodesMap.containsKey(id) ? nodesMap.get(id)
+				: waysMap.containsKey(id) ? waysMap.get(id)
+						: relationsMap.containsKey(id) ? relationsMap.get(id) : boundsMap.get(id);
 	}
 
 	public void addRelation(Relation entity) {
-		relationsMap.put(entity.getId(), entity);				
+		relationsMap.put(entity.getId(), entity);
 	}
 
 	public void addWay(Way entity) {
-		waysMap.put(entity.getId(), entity);				
+		waysMap.put(entity.getId(), entity);
 	}
 
 	public void addNode(Node entity) {
-		nodesMap.put(entity.getId(), entity);		
+		nodesMap.put(entity.getId(), entity);
 	}
 }

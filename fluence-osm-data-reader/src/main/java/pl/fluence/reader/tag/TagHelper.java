@@ -2,7 +2,6 @@ package pl.fluence.reader.tag;
 
 import org.openstreetmap.osmosis.core.domain.v0_6.Entity;
 import org.openstreetmap.osmosis.core.domain.v0_6.Tag;
-import org.openstreetmap.osmosis.core.domain.v0_6.Way;
 
 public class TagHelper {
 	public static boolean isTag(String key, Entity entity) {

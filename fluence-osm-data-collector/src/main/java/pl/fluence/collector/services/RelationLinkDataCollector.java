@@ -20,7 +20,7 @@ import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Polygon;
 
-import pl.fluence.reader.models.SimpleElementsDatabase;
+import pl.fluence.reader.database.SimpleElementsDatabase;
 import pl.fluence.reader.processors.AllElementsProccesor;
 
 public class RelationLinkDataCollector {

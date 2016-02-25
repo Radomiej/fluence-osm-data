@@ -5,7 +5,7 @@ import org.openstreetmap.osmosis.core.domain.v0_6.Node;
 import org.openstreetmap.osmosis.core.domain.v0_6.Relation;
 import org.openstreetmap.osmosis.core.domain.v0_6.Way;
 
-import pl.fluence.reader.models.SimpleElementsDatabase;
+import pl.fluence.reader.database.SimpleElementsDatabase;
 
 public class AllElementsProccesor implements OsmElementProccesor {
 
