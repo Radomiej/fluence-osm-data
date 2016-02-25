@@ -13,9 +13,15 @@ import org.openstreetmap.osmosis.core.domain.v0_6.Node;
 import org.openstreetmap.osmosis.core.domain.v0_6.Tag;
 import org.openstreetmap.osmosis.core.domain.v0_6.Way;
 
+import pl.fluence.reader.database.ElementsDatabase;
+import pl.fluence.reader.filters.AndFilter;
+import pl.fluence.reader.filters.KeyFilter;
+import pl.fluence.reader.filters.KeyValuesFilter;
+import pl.fluence.reader.filters.StringComparator;
 import pl.fluence.reader.importers.OsmImporter;
 import pl.fluence.reader.processors.KeysElementProccesor;
 import pl.fluence.reader.processors.AllElementsProccesor;
+import pl.fluence.reader.processors.FilterElementProccesor;
 import pl.fluence.reader.processors.KarlsruheSchemaProccesor;
 import pl.fluence.reader.processors.OsmElementProccesor;
 import pl.fluence.reader.tag.TagHelper;
@@ -42,31 +48,36 @@ public class ProccesingDataTest {
 	public void tearDown() throws Exception {
 	}
 
-	// @Test
+	 @Test
 	public void testKeysTollProccessor() {
 		mapFile = new File("C://mapy//lubuskie-latest.osm.pbf");
+		
+		KeyFilter highwayKeyFilter = new KeyFilter("highway");
+		KeyFilter tollKeyFilter = new KeyFilter("toll:");
+		KeyValuesFilter tollKeyValuesFilter = new KeyValuesFilter("toll", "yes");
+		tollKeyValuesFilter.setKeyComparator(StringComparator.CONTAINS);
+		
+		AndFilter andFilter = new AndFilter(tollKeyValuesFilter, highwayKeyFilter);
+		FilterElementProccesor filterElementProccesor = new FilterElementProccesor();
+		filterElementProccesor.addOrFilter(andFilter);
+		
+		
 		KeysElementProccesor keysProccesor = new KeysElementProccesor(true, true, false);
 		keysProccesor.setContainsChecker(false);
 		keysProccesor.addValidKey("toll");
 		keysProccesor.addValidKey("toll:hsv");
-		osmImporter.addProccessor(keysProccesor);
+		osmImporter.addProccessor(filterElementProccesor);
 		osmImporter.proccesImport(mapFile);
-		for (Entity entity : keysProccesor.getValidWays()) {
+		
+		ElementsDatabase elementsDatabase = filterElementProccesor.getElementsDatabase();
+		for(Entity entity : elementsDatabase.getWaysMap().values()){
 			System.out.println(TagPrettyPrinter.prettyPrintTagCollection(entity.getTags()));
-			for (Tag tag : entity.getTags()) {
-				if (tag.getValue().contains("viaTOLL")) {
-					System.out.println(TagPrettyPrinter.prettyPrintTagCollection(entity.getTags()));
-				}
-			}
-			if (TagHelper.haveOneValue("operator", entity, "viaToll")) {
-
-			}
 		}
-
+		System.out.println("Razem: " + elementsDatabase.getWaysMap().values().size());
 		assertEquals(494, keysProccesor.getValidNodes().size());
 	}
 
-	@Test
+//	@Test
 	public void testKeysProccessor() {
 		KeysElementProccesor keysProccesor = new KeysElementProccesor(true, true, false);
 		keysProccesor.setAllChecker(true);
@@ -85,7 +96,7 @@ public class ProccesingDataTest {
 		assertEquals(113, keysProccesor.getValidWays().size());
 	}
 
-	@Test
+//	@Test
 	public void testAllElementsProccessor() {
 		AllElementsProccesor allNodeProccesor = new AllElementsProccesor();
 		osmImporter.addProccessor(allNodeProccesor);
@@ -96,7 +107,7 @@ public class ProccesingDataTest {
 		assertEquals(1, allNodeProccesor.getElementDatabase().getBoundsMap().keySet().size());
 	}
 
-	@Test
+//	@Test
 	public void testKarlsruheProccessor() {
 		KarlsruheSchemaProccesor karlsruheSchemaProccesor = new KarlsruheSchemaProccesor();
 		osmImporter.addProccessor(karlsruheSchemaProccesor);

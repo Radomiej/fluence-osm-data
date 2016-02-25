@@ -2,7 +2,6 @@ package pl.fluence.reader.filters;
 
 public enum StringComparator {
 	EQUALS{
-
 		@Override
 		public boolean compareString(String comparatorString, String valueToCheck) {
 			return comparatorString.equals(valueToCheck);
@@ -10,7 +9,6 @@ public enum StringComparator {
 		
 	},
 	CONTAINS{
-
 		@Override
 		public boolean compareString(String comparatorString, String valueToCheck) {
 			return valueToCheck.contains(comparatorString);
@@ -18,7 +16,6 @@ public enum StringComparator {
 		
 	},
 	START{
-
 		@Override
 		public boolean compareString(String comparatorString, String valueToCheck) {
 			return valueToCheck.startsWith(comparatorString);
@@ -26,7 +23,6 @@ public enum StringComparator {
 		
 	},
 	END{
-
 		@Override
 		public boolean compareString(String comparatorString, String valueToCheck) {
 			return valueToCheck.endsWith(comparatorString);

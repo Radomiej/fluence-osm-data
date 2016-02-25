@@ -8,7 +8,7 @@ public class TagPrettyPrinter {
 	public static String prettyPrintTagCollection(Collection<Tag> tags){
 		String tagsText = "";
 		for (Tag tag : tags) {
-			tagsText += tag.getKey() + "=" + tag.getValue() + " ";
+			tagsText += tag.getKey() + "=" + tag.getValue() + ",";
 		}
 		return tagsText;
 	}

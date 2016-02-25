@@ -19,6 +19,7 @@ public abstract class DefaultFilter implements OsmElementFilter {
 	};
 
 	public void stopElement() {
+		result = false;
 		current = null;
 	}
 

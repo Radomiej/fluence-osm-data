@@ -14,6 +14,7 @@ import pl.fluence.reader.database.ElementsDatabase;
 import pl.fluence.reader.database.OsmDatabaseCollector;
 import pl.fluence.reader.database.SimpleElementsDatabase;
 import pl.fluence.reader.filters.OsmElementFilter;
+import pl.fluence.reader.tag.TagPrettyPrinter;
 
 public class FilterElementProccesor implements OsmElementProccesor, OsmDatabaseCollector {
 
@@ -58,5 +59,9 @@ public class FilterElementProccesor implements OsmElementProccesor, OsmDatabaseC
 
 	public ElementsDatabase getElementsDatabase() {
 		return database;
+	}
+	
+	public void addOrFilter(OsmElementFilter filter){
+		filters.add(filter);
 	}
 }
