@@ -61,11 +61,6 @@ public class ProccesingDataTest {
 		FilterElementProccesor filterElementProccesor = new FilterElementProccesor();
 		filterElementProccesor.addOrFilter(andFilter);
 		
-		
-		KeysElementProccesor keysProccesor = new KeysElementProccesor(true, true, false);
-		keysProccesor.setContainsChecker(false);
-		keysProccesor.addValidKey("toll");
-		keysProccesor.addValidKey("toll:hsv");
 		osmImporter.addProccessor(filterElementProccesor);
 		osmImporter.proccesImport(mapFile);
 		
@@ -74,7 +69,6 @@ public class ProccesingDataTest {
 			System.out.println(TagPrettyPrinter.prettyPrintTagCollection(entity.getTags()));
 		}
 		System.out.println("Razem: " + elementsDatabase.getWaysMap().values().size());
-		assertEquals(494, keysProccesor.getValidNodes().size());
 	}
 
 //	@Test
@@ -101,10 +95,10 @@ public class ProccesingDataTest {
 		AllElementsProccesor allNodeProccesor = new AllElementsProccesor();
 		osmImporter.addProccessor(allNodeProccesor);
 		osmImporter.proccesImport(mapFile);
-		assertEquals(173598, allNodeProccesor.getElementDatabase().getNodesMap().keySet().size());
-		assertEquals(6756, allNodeProccesor.getElementDatabase().getWaysMap().keySet().size());
-		assertEquals(158, allNodeProccesor.getElementDatabase().getRelationsMap().keySet().size());
-		assertEquals(1, allNodeProccesor.getElementDatabase().getBoundsMap().keySet().size());
+		assertEquals(173598, allNodeProccesor.getElementsDatabase().getNodesMap().keySet().size());
+		assertEquals(6756, allNodeProccesor.getElementsDatabase().getWaysMap().keySet().size());
+		assertEquals(158, allNodeProccesor.getElementsDatabase().getRelationsMap().keySet().size());
+		assertEquals(1, allNodeProccesor.getElementsDatabase().getBoundsMap().keySet().size());
 	}
 
 //	@Test

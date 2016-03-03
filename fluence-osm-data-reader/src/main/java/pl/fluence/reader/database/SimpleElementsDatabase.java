@@ -64,4 +64,34 @@ public class SimpleElementsDatabase implements ElementsDatabase {
 	public void addNode(Node entity) {
 		nodesMap.put(entity.getId(), entity);
 	}
+
+	public void add(ElementsDatabase otherDatabase) {
+		for(Way way : otherDatabase.getWaysMap().values()){
+			waysMap.put(way.getId(), way);
+		}
+		for(Bound bound : otherDatabase.getBoundsMap().values()){
+			boundsMap.put(bound.getId(), bound);
+		}
+		for(Node node : otherDatabase.getNodesMap().values()){
+			nodesMap.put(node.getId(), node);
+		}
+		for(Relation relation : otherDatabase.getRelationsMap().values()){
+			relationsMap.put(relation.getId(), relation);
+		}
+	}
+
+	public void remove(ElementsDatabase otherDatabase) {
+		for(Way way : otherDatabase.getWaysMap().values()){
+			waysMap.remove(way);
+		}
+		for(Bound bound : otherDatabase.getBoundsMap().values()){
+			boundsMap.remove(bound);
+		}
+		for(Node node : otherDatabase.getNodesMap().values()){
+			nodesMap.remove(node);
+		}
+		for(Relation relation : otherDatabase.getRelationsMap().values()){
+			relationsMap.remove(relation);
+		}
+	}
 }

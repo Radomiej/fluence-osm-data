@@ -5,11 +5,13 @@ import org.openstreetmap.osmosis.core.domain.v0_6.Node;
 import org.openstreetmap.osmosis.core.domain.v0_6.Relation;
 import org.openstreetmap.osmosis.core.domain.v0_6.Way;
 
+import pl.fluence.reader.database.ElementsDatabase;
+import pl.fluence.reader.database.OsmDatabaseCollector;
 import pl.fluence.reader.database.SimpleElementsDatabase;
 
-public class AllElementsProccesor implements OsmElementProccesor {
+public class AllElementsProccesor implements OsmElementProccesor, OsmDatabaseCollector {
 
-	private SimpleElementsDatabase elementDatabase = new SimpleElementsDatabase();
+	private ElementsDatabase elementDatabase = new SimpleElementsDatabase();
 
 	public void complete() {
 
@@ -31,7 +33,7 @@ public class AllElementsProccesor implements OsmElementProccesor {
 		elementDatabase.addEntity(node);
 	}
 
-	public SimpleElementsDatabase getElementDatabase() {
+	public ElementsDatabase getElementsDatabase() {
 		return elementDatabase;
 	}
 	

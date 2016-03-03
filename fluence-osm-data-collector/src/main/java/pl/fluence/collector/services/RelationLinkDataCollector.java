@@ -20,18 +20,20 @@ import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Polygon;
 
+import pl.fluence.reader.database.ElementsDatabase;
 import pl.fluence.reader.database.SimpleElementsDatabase;
 import pl.fluence.reader.processors.AllElementsProccesor;
 
 public class RelationLinkDataCollector {
-	private SimpleElementsDatabase elementsDatabase;
+	private ElementsDatabase elementsDatabase;
 	List<RelationLink> relationLinks = new ArrayList<RelationLink>();
 	private Map<Long, RelationLink> relationMap = new HashMap<Long, RelationLink>();
-
+	private GeometryFactory fact = new GeometryFactory();
+	
 	private int nullLink = 0;
 	private int anyLink = 0;
 
-	public RelationLinkDataCollector(SimpleElementsDatabase elementsDatabase) {
+	public RelationLinkDataCollector(ElementsDatabase elementsDatabase) {
 		this.elementsDatabase = elementsDatabase;
 	}
 
@@ -99,9 +101,9 @@ public class RelationLinkDataCollector {
 		if (outerCoordinates.size() > 2) {
 			outerCoordinates.add(outerCoordinates.get(0));
 			Coordinate[] coordinatesTab = new Coordinate[outerCoordinates.size()];
-			outerCoordinates.toArray(coordinatesTab);
+			coordinatesTab = outerCoordinates.toArray(coordinatesTab);
 
-			GeometryFactory fact = new GeometryFactory();
+		
 			LinearRing linear = new GeometryFactory().createLinearRing(coordinatesTab);
 			Polygon poly = new Polygon(linear, null, fact);
 			Polygon[] polys = { poly };

@@ -16,4 +16,6 @@ public interface ElementsDatabase {
 	
 	public void addEntity(Entity entity);
 	public Entity getEntity(Long id);
+	public void add(ElementsDatabase otherDatabase);
+	public void remove(ElementsDatabase otherDatabase);
 }

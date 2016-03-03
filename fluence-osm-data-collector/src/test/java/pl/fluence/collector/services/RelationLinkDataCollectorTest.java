@@ -37,7 +37,7 @@ public class RelationLinkDataCollectorTest {
 		osmImporter.addProccessor(allNodeProccesor);
 		osmImporter.proccesImport(mapFile);
 		
-		RelationLinkDataCollector relationLinkDataCollector = new RelationLinkDataCollector(allNodeProccesor.getElementDatabase());
+		RelationLinkDataCollector relationLinkDataCollector = new RelationLinkDataCollector(allNodeProccesor.getElementsDatabase());
 		relationLinkDataCollector.procces();
 		System.out.println("Relation links: " + relationLinkDataCollector.relationLinks.size());
 		relationLinkDataCollector.getRelationMap();

@@ -8,6 +8,13 @@ public enum StringComparator {
 		}
 		
 	},
+	EQUALS_IGNORE_CASE{
+		@Override
+		public boolean compareString(String comparatorString, String valueToCheck) {
+			return comparatorString.equalsIgnoreCase(valueToCheck);
+		}
+		
+	},
 	CONTAINS{
 		@Override
 		public boolean compareString(String comparatorString, String valueToCheck) {
