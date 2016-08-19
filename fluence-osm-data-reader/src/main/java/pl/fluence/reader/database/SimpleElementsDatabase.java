@@ -118,4 +118,9 @@ public class SimpleElementsDatabase implements ElementsDatabase {
 			addRelation(relation);
 		}	
 	}
+	
+	@Override
+	public String toString() {
+		return "Database nodes: " + nodesMap.size() + " ways: " + waysMap.size() + " relations: " + relationsMap.size(); 
+	}
 }

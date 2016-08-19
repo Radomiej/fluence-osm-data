@@ -22,6 +22,9 @@ public class KeysElementProccesor implements OsmElementProccesor {
 	private boolean checkRelation = true;
 
 	private boolean containsChecker = true;
+	/**
+	 * true - All tags must be in Entity. False - otherwise
+	 */
 	private boolean allChecker = false;
 
 	private List<String> validKeys = new ArrayList<String>();
@@ -163,6 +166,9 @@ public class KeysElementProccesor implements OsmElementProccesor {
 		return allChecker;
 	}
 
+	/**
+	 * true - All tags must be in Entity. False - only one is needed
+	 */
 	public void setAllChecker(boolean allChecker) {
 		this.allChecker = allChecker;
 	}
