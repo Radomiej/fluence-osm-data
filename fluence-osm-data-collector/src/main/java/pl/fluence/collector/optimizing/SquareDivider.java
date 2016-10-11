@@ -15,7 +15,7 @@ public class SquareDivider {
 	private Bound mapBound;
 	private List<SquareMap> squaresMap = new ArrayList<SquareMap>();
 	private File mapFile;
-	
+	private float sizeSquare = 8;
 	
 	public SquareDivider(String mapPath){
 		mapBound = getMapBound(mapPath);
@@ -27,9 +27,9 @@ public class SquareDivider {
 		int left = mapBound.getLeft() >= 0 ? (int) Math.floor(mapBound.getLeft()) : (int) Math.ceil(mapBound.getLeft());
 	
 		System.out.println("top: " + top + " bottom: " + bottom + " left: " + left + " right: " + right);
-		for(int x = left; x < right; x++){
-			for(int y = bottom; y < top; y++){
-				SquareMap square = new SquareMap(x + 0.5f, y + 0.5f);
+		for(int x = left; x < right + (sizeSquare / 2); x += sizeSquare){
+			for(int y = bottom; y < top + (sizeSquare / 2); y += sizeSquare){
+				SquareMap square = new SquareMap(x + (sizeSquare / 2), y + (sizeSquare / 2), sizeSquare, sizeSquare * 1.2f);
 				squaresMap.add(square);
 			}
 		}
