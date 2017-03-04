@@ -40,10 +40,13 @@ public class WayLinkDataCollector {
 		Collection<Way> ways = elementsDatabase.getWaysMap().values();
 		for (Way way : ways) {
 			WayLink wayLink = createWayLink(way);
+			if(wayLink == null) continue;
 			wayLinks.add(wayLink);
 			waysMap.put(way.getId(), wayLink);
 		}
 	}
+
+	
 
 	private WayLink createWayLink(Way way) {
 		WayLink wayLink = new WayLink();
@@ -52,8 +55,13 @@ public class WayLinkDataCollector {
 		List<Coordinate> coordinates = new LinkedList<Coordinate>();
 		addWayNodesCoordinates(way, coordinates);
 		
+		
+		if(coordinates.size() <= 1){
+			return null;
+		}
 		Coordinate[] coordinatesTab = new Coordinate[coordinates.size()];
 		coordinatesTab = coordinates.toArray(coordinatesTab);
+		
 		LineString lineString = fact.createLineString(coordinatesTab);
 		wayLink.setLine(lineString);
 		

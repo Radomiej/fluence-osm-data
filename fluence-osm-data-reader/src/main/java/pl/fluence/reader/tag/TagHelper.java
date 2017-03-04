@@ -4,6 +4,13 @@ import org.openstreetmap.osmosis.core.domain.v0_6.Entity;
 import org.openstreetmap.osmosis.core.domain.v0_6.Tag;
 
 public class TagHelper {
+	
+	/**
+	 * Contains key in entity tags
+	 * @param key
+	 * @param entity
+	 * @return
+	 */
 	public static boolean isTag(String key, Entity entity) {
 		for (Tag tag : entity.getTags()) {
 			if (tag.getKey().equals(key)) {
@@ -63,6 +70,6 @@ public class TagHelper {
 				return tag.getValue();
 			}
 		}
-		return null;
+		return "";
 	}
 }

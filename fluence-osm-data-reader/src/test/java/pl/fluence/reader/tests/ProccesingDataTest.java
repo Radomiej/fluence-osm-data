@@ -50,8 +50,6 @@ public class ProccesingDataTest {
 
 	 @Test
 	public void testKeysTollProccessor() {
-		mapFile = new File("C://mapy//lubuskie-latest.osm.pbf");
-		
 		KeyFilter highwayKeyFilter = new KeyFilter("highway");
 		KeyFilter tollKeyFilter = new KeyFilter("toll:");
 		KeyValuesFilter tollKeyValuesFilter = new KeyValuesFilter("toll", "yes");

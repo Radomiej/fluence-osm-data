@@ -94,4 +94,40 @@ public class SimpleElementsDatabase implements ElementsDatabase {
 			relationsMap.remove(relation);
 		}
 	}
+
+	public void addEntites(Iterable<Entity> entitiesToAdds) {
+		for(Entity entity : entitiesToAdds){
+			addEntity(entity);
+		}
+	}
+
+	public void addWays(Iterable<Way> waysToAdds) {
+		for(Way way : waysToAdds){
+			addWay(way);
+		}		
+	}
+
+	public void addNodes(Iterable<Node> nodeToAdds) {
+		for(Node node : nodeToAdds){
+			addNode(node);
+		}	
+	}
+	
+	public void addRelations(Iterable<Relation> relationToAdds) {
+		for(Relation relation : relationToAdds){
+			addRelation(relation);
+		}	
+	}
+	
+	@Override
+	public String toString() {
+		return "Database nodes: " + nodesMap.size() + " ways: " + waysMap.size() + " relations: " + relationsMap.size(); 
+	}
+	
+	public void remove(long elementId) {
+		nodesMap.remove(elementId);
+		waysMap.remove(elementId);
+		relationsMap.remove(elementId);
+		boundsMap.remove(elementId);
+	}
 }

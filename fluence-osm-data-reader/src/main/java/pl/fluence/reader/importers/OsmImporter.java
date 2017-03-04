@@ -11,6 +11,7 @@ import org.openstreetmap.osmosis.core.domain.v0_6.Way;
 import org.openstreetmap.osmosis.core.task.v0_6.Sink;
 import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader;
 
+import pl.fluence.reader.database.SimpleElementsDatabase;
 import pl.fluence.reader.processors.OsmElementProccesor;
 import pl.fluence.reader.sinks.OsmSink;
 
@@ -18,7 +19,7 @@ public class OsmImporter implements Importer {
 	public static final String SEPARATOR = System.lineSeparator();
 	
 	private List<OsmElementProccesor> proccesors = new ArrayList<OsmElementProccesor>();
-
+	
 	public void addProccessor(OsmElementProccesor proccesor){
 		proccesors.add(proccesor);
 	}
@@ -64,4 +65,32 @@ public class OsmImporter implements Importer {
 		reader.setSink(sink);
 		reader.run();
 	}
+
+	public void proccesImport(SimpleElementsDatabase elementsDatabase) {
+		for(Bound bound : elementsDatabase.getBoundsMap().values()){
+			for(OsmElementProccesor proccesor : proccesors){
+				proccesor.proccesBound(bound);
+			}
+		}
+		for(Node node : elementsDatabase.getNodesMap().values()){
+			for(OsmElementProccesor proccesor : proccesors){
+				proccesor.proccesNode(node);
+			}
+		}
+		for(Way way : elementsDatabase.getWaysMap().values()){
+			for(OsmElementProccesor proccesor : proccesors){
+				proccesor.proccesWay(way);
+			}
+		}
+		for(Relation relation : elementsDatabase.getRelationsMap().values()){
+			for(OsmElementProccesor proccesor : proccesors){
+				proccesor.proccesRelation(relation);
+			}
+		}
+		for (OsmElementProccesor proccesor : proccesors) {
+			proccesor.complete();
+		}
+	}
+
+	
 }
