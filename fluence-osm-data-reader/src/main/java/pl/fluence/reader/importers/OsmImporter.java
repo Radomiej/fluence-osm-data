@@ -91,6 +91,5 @@ public class OsmImporter implements Importer {
 			proccesor.complete();
 		}
 	}
-
 	
 }
