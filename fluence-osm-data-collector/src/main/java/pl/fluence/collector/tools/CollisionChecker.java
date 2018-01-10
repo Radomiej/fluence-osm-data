@@ -11,7 +11,7 @@ import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 
 public class CollisionChecker {
-	public static boolean checkMultipolygonAndPointText(String multipolygon, double lat, double lon){
+	public static boolean checkMultipolygonAndPoint(String multipolygon, double lat, double lon){
 		
 		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory( null );
 		WKTReader reader = new WKTReader( geometryFactory );

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="fluence-osm-data-collector/src/main/java"/>
+	<classpathentry kind="src" path="fluence-osm-data-collector/src/test/java"/>
+	<classpathentry kind="src" path="fluence-osm-data-reader/src/main/java"/>
+	<classpathentry kind="src" path="fluence-osm-data-reader/src/test/java"/>
+	<classpathentry kind="src" path="fluence-osm-to-json/src/main/java"/>
+	<classpathentry kind="src" path="fluence-osm-to-json/src/test/java"/>
+	<classpathentry kind="lib" path="fluence-osm-data-collector/target/fluence-osm-data-collector-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="fluence-osm-data-reader/target/fluence-osm-data-reader-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="fluence-osm-to-json/target/fluence-osm-to-json-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="fluence-osm-to-json/target/surefire/surefirebooter2344046735955506571.jar"/>
+	<classpathentry kind="lib" path="fluence-osm-to-json/target/surefire/surefirebooter2950255946946514130.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="fluence-osm-data-collector/target/classes"/>
+</classpath>

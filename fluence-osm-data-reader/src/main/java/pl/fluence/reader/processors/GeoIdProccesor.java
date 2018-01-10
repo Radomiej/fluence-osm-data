@@ -46,10 +46,7 @@ public class GeoIdProccesor implements OsmElementProccesor, OsmDatabaseCollector
 	}
 	
 	public void addEntity(Entity entity){
-		if(lookingEntities.contains(entity.getId()) && entity.getType().equals(EntityType.Node)){
-			if(entity.getId() == 2713355358l){
-				System.out.println("Dodaje entity o id 2713355358 type: " + entity.getType() + " class: " + entity.getClass().getSimpleName() + " w bazie: " + elementDatabase.getEntity(2713355358l) + " w bazie2: " + elementDatabase.getEntity(entity.getId()));
-			}
+		if(lookingEntities.contains(entity.getId())){
 			elementDatabase.addEntity(entity);
 			lookingEntities.remove(entity.getId());
 		}

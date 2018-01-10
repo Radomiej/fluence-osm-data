@@ -1,6 +1,6 @@
 package pl.fluence.reader.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 
@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.openstreetmap.osmosis.core.domain.v0_6.Entity;
 import org.openstreetmap.osmosis.core.domain.v0_6.Node;
 import org.openstreetmap.osmosis.core.domain.v0_6.Tag;
-import org.openstreetmap.osmosis.core.domain.v0_6.Way;
 
 import pl.fluence.reader.database.ElementsDatabase;
 import pl.fluence.reader.filters.AndFilter;
@@ -19,12 +18,9 @@ import pl.fluence.reader.filters.KeyFilter;
 import pl.fluence.reader.filters.KeyValuesFilter;
 import pl.fluence.reader.filters.StringComparator;
 import pl.fluence.reader.importers.OsmImporter;
-import pl.fluence.reader.processors.KeysElementProccesor;
 import pl.fluence.reader.processors.AllElementsProccesor;
 import pl.fluence.reader.processors.FilterElementProccesor;
-import pl.fluence.reader.processors.KarlsruheSchemaProccesor;
-import pl.fluence.reader.processors.OsmElementProccesor;
-import pl.fluence.reader.tag.TagHelper;
+import pl.fluence.reader.processors.KeysElementProccesor;
 import pl.fluence.reader.tag.TagPrettyPrinter;
 
 public class ProccesingDataTest {
@@ -99,11 +95,5 @@ public class ProccesingDataTest {
 		assertEquals(1, allNodeProccesor.getElementsDatabase().getBoundsMap().keySet().size());
 	}
 
-//	@Test
-	public void testKarlsruheProccessor() {
-		KarlsruheSchemaProccesor karlsruheSchemaProccesor = new KarlsruheSchemaProccesor();
-		osmImporter.addProccessor(karlsruheSchemaProccesor);
-		osmImporter.proccesImport(mapFile);
-		assertEquals(39, karlsruheSchemaProccesor.getResultsSize());
-	}
+
 }

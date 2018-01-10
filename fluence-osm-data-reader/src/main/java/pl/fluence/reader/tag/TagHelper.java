@@ -72,4 +72,13 @@ public class TagHelper {
 		}
 		return "";
 	}
+	
+	public static String getValueWithDefault(String key, Entity entity, String defaultValue) {
+		for (Tag tag : entity.getTags()) {
+			if (tag.getKey().equals(key)) {
+				return tag.getValue();
+			}
+		}
+		return defaultValue;
+	}
 }

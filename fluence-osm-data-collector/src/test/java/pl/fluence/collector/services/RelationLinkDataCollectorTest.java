@@ -1,12 +1,8 @@
 package pl.fluence.collector.services;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 
-import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,8 +12,6 @@ import com.vividsolutions.jts.geom.MultiPolygon;
 import pl.fluence.collector.tools.CollisionChecker;
 import pl.fluence.reader.importers.OsmImporter;
 import pl.fluence.reader.processors.AllElementsProccesor;
-import pl.fluence.reader.processors.KarlsruheSchemaProccesor;
-import pl.fluence.reader.processors.KeysElementProccesor;
 
 public class RelationLinkDataCollectorTest {
 
@@ -48,7 +42,7 @@ public class RelationLinkDataCollectorTest {
 //				System.out.println("Brak granicy dla : " + relationLink.getRelation() + " multipolygon: " + relationLink.getMultiPolygon());
 			}
 			MultiPolygon multiPolygon = relationLink.getMultiPolygon();
-			if (multiPolygon != null && CollisionChecker.checkMultipolygonAndPointText(multiPolygon.toString(), 52.757618,
+			if (multiPolygon != null && CollisionChecker.checkMultipolygonAndPoint(multiPolygon.toString(), 52.757618,
 					15.262077)) {
 				System.out.println("Kolizja: " + relationLink.getRelation());
 				

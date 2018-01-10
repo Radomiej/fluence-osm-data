@@ -29,6 +29,9 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 
+import pl.fluence.gis.models.LineElement;
+import pl.fluence.gis.models.PolygonElement;
+import pl.fluence.gis.models.SymbolElement;
 import pl.fluence.reader.database.ElementsDatabase;
 import pl.fluence.reader.importers.OsmImporter;
 import pl.fluence.reader.processors.AllElementsProccesor;
@@ -46,7 +49,11 @@ public class OsmToJsonEngine {
 	FilterElementProccesor elementProccesor;
 
 	private ElementsDatabase database;
-
+	
+	private List<PolygonElement> polygons;
+	private List<LineElement> lines;
+	private List<SymbolElement> symbols;
+	
 	public OsmToJsonEngine(File osmFile, File targetFolder, FilterElementProccesor elementsProccesor, String prefix) {
 		this.osmFile = osmFile;
 		this.targetFolder = targetFolder;
@@ -72,9 +79,9 @@ public class OsmToJsonEngine {
 		importNeededNodesForWays();
 
 		System.out.println("tworzenie obiektow json");
-		List<PolygonElement> polygons = createPolygons();
-		List<LineElement> lines = createLines();
-		List<SymbolElement> symbols = createSymbols();
+		polygons = createPolygons();
+		lines = createLines();
+		symbols = createSymbols();
 
 		System.out.println("polygons count: " + polygons.size());
 		System.out.println("lines count: " + lines.size());
@@ -188,10 +195,20 @@ public class OsmToJsonEngine {
 	private Map<String, String> getTagsMap(Entity entity) {
 		Map<String, String> tagsMap = new HashMap<String, String>();
 		for (Tag tag : entity.getTags()) {
+			if(isUnwantedTag(tag)) continue;
 			tagsMap.put(tag.getKey(), tag.getValue());
 		}
 
 		return tagsMap;
+	}
+
+	private boolean isUnwantedTag(Tag tag) {
+		if(tag.getKey().startsWith("source")) return true;
+		if(tag.getKey().startsWith("created_by")) return true;
+		if(tag.getKey().startsWith("ref")) return true;
+		if(tag.getKey().startsWith("FIXME")) return true;
+		
+		return false;
 	}
 
 	private List<Point> getPointsListFromWay(Way way) {
@@ -244,5 +261,17 @@ public class OsmToJsonEngine {
 		}
 
 		return new GeoIdProccesor(nodesToFind);
+	}
+
+	public List<PolygonElement> getPolygons() {
+		return polygons;
+	}
+
+	public List<LineElement> getLines() {
+		return lines;
+	}
+
+	public List<SymbolElement> getSymbols() {
+		return symbols;
 	}
 }
